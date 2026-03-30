@@ -1,0 +1,1037 @@
+/* ============================================
+   JOB PANEL - MODERN STYLING
+   ============================================ */
+
+.job-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* ============================================
+   FILE INPUT SECTION
+   ============================================ */
+
+.hidden-input {
+  display: none;
+  width: 100%;
+}
+
+.file-input-wrapper {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.file-input-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  border: 2px dashed var(--primary-light);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.02) 100%);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  min-height: 120px;
+  text-align: center;
+}
+
+.file-input-label:hover {
+  border-color: var(--primary-dark);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.05) 100%);
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.15);
+  transform: translateY(-2px);
+}
+
+.file-input-label:active {
+  transform: translateY(0);
+}
+
+.file-input-icon {
+  font-size: 2.5rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.file-input-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+.file-input-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ============================================
+   UPLOAD BUTTON
+   ============================================ */
+
+.upload-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(102, 126, 234, 0.3) inset, var(--shadow-md);
+}
+
+.upload-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width var(--transition-slow), height var(--transition-slow);
+}
+
+.upload-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 0 0 1px rgba(102, 126, 234, 0.5) inset, var(--shadow-lg), 0 0 30px rgba(102, 126, 234, 0.3);
+}
+
+.upload-btn:hover:not(:disabled)::before {
+  width: 300px;
+  height: 300px;
+}
+
+.upload-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.upload-btn.loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.btn-icon {
+  font-size: 1.25rem;
+  display: inline-block;
+}
+
+.btn-text {
+  display: inline-block;
+}
+
+/* ============================================
+   STATUS CONTAINER
+   ============================================ */
+
+.status-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(51, 65, 85, 0.4) 100%);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  animation: slideInUp 0.4s ease-out;
+}
+
+/* Status Badge */
+.status-badge-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-lg);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.85rem;
+  transition: all var(--transition-base);
+  animation: slideInUp 0.4s ease-out;
+}
+
+.status-badge.idle {
+  background: rgba(148, 163, 184, 0.15);
+  border: 2px solid rgba(148, 163, 184, 0.3);
+  color: #94a3b8;
+}
+
+.status-badge.uploading,
+.status-badge.processing {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.1) 100%);
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  color: #3b82f6;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.status-badge.queued {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.1) 100%);
+  border: 2px solid rgba(245, 158, 11, 0.3);
+  color: #f59e0b;
+}
+
+.status-badge.done {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.1) 100%);
+  border: 2px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+  animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.status-badge.failed {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(185, 28, 28, 0.1) 100%);
+  border: 2px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.status-icon {
+  font-size: 1.25rem;
+  display: inline-block;
+  animation: bounce 1.5s ease-in-out infinite;
+}
+
+.status-text {
+  display: inline-block;
+}
+
+/* Progress Section */
+.progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  animation: fadeInUp 0.4s ease-out 0.1s both;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.progress-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.progress-bar-container {
+  position: relative;
+  height: 14px;
+  background: linear-gradient(90deg,rgba(102,126,234,0.08),rgba(118,75,162,0.04));
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(102,126,234,0.15);
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg,#667eea 0%,#764ba2 50%,#06b6d4 100%);
+  border-radius: 8px;
+  transition: width 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 0 12px rgba(102, 126, 234, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
+  animation: shimmer 2s infinite;
+}
+
+.progress-bar-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+/* Job Info */
+.job-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(102, 126, 234, 0.05);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: var(--radius-lg);
+  animation: fadeInUp 0.4s ease-out 0.2s both;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.info-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.info-value {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  font-family: "Courier New", monospace;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  word-break: break-all;
+  flex-shrink: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Error Banner */
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(185, 28, 28, 0.05) 100%);
+  border: 2px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-lg);
+  animation: slideInUp 0.4s ease-out;
+}
+
+.error-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.error-text {
+  font-size: 0.9rem;
+  color: #ef4444;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+/* ============================================
+   RECORD BUTTON
+   ============================================ */
+
+.record-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, #ec4899 0%, #d946a6 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(236, 72, 153, 0.3) inset, var(--shadow-md);
+}
+
+.record-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width var(--transition-slow), height var(--transition-slow);
+}
+
+.record-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(236, 72, 153, 0.5) inset, var(--transition-lg), 0 0 25px rgba(236, 72, 153, 0.3);
+}
+
+.record-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* ============================================
+   CAMERA MODAL
+   ============================================ */
+
+.camera-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease-out;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.camera-content {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  border: 2px solid var(--primary-light);
+  border-radius: var(--radius-2xl);
+  padding: 1.5rem;
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  box-shadow: var(--shadow-2xl), 0 0 40px rgba(102, 126, 234, 0.3);
+  animation: slideInUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.camera-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.camera-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.camera-close {
+  background: var(--bg-tertiary);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.camera-close:hover {
+  background: var(--error);
+  border-color: var(--error);
+  color: white;
+  transform: rotate(90deg);
+}
+
+.camera-video {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+  background: #000;
+  border: 2px solid var(--border-color);
+}
+
+.countdown-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 80px;
+  font-weight: 800;
+  color: #ef4444;
+  text-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+  animation: pulse 1s ease-in-out infinite;
+  z-index: 10;
+}
+
+.camera-controls {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.camera-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid var(--border-color);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex: 1;
+  min-width: 100px;
+}
+
+.camera-btn span {
+  font-size: 1rem;
+  display: inline-block;
+}
+
+.camera-btn.record:not(.disabled) {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border-color: #ef4444;
+  color: white;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.camera-btn.record:not(.disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
+}
+
+.camera-btn.stop:not(.disabled) {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border-color: #ef4444;
+  color: white;
+}
+
+.camera-btn.stop:not(.disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.4);
+}
+
+.camera-btn.audio {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dark) 100%);
+  border-color: var(--primary-light);
+  color: white;
+}
+
+.camera-btn.audio:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+}
+
+.camera-btn.audio.muted {
+  opacity: 0.6;
+}
+
+.camera-btn.disabled,
+.camera-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  animation: none;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* 990px breakpoint */
+@media (max-width: 990px) {
+  .job-panel {
+    gap: 0.6rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .file-input-label {
+    padding: 1.2rem;
+    min-height: 95px;
+    gap: 0.5rem;
+  }
+
+  .file-input-icon {
+    font-size: 2.2rem;
+  }
+
+  .file-input-text {
+    font-size: 0.95rem;
+    word-break: break-word;
+  }
+
+  .upload-btn,
+  .record-btn {
+    padding: 0.8rem 1.1rem;
+    font-size: 0.88rem;
+    width: 100%;
+  }
+
+  .status-container {
+    padding: 1.1rem;
+    gap: 0.7rem;
+  }
+
+  .camera-content {
+    max-width: 90vw;
+    width: 100%;
+  }
+
+  .camera-video {
+    height: 270px;
+  }
+
+  .info-row {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .info-label {
+    min-width: auto;
+    flex-shrink: 0;
+  }
+
+  .info-value {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .camera-controls {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .camera-btn {
+    flex: 1 1 calc(50% - 0.3rem);
+    min-width: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .job-panel {
+    gap: 0.75rem;
+  }
+
+  .file-input-label {
+    padding: 1.5rem;
+    min-height: 110px;
+  }
+
+  .upload-btn,
+  .record-btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .status-container {
+    padding: 1.25rem;
+  }
+
+  .camera-content {
+    max-width: 500px;
+    padding: 1.25rem;
+  }
+
+  .camera-video {
+    height: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .job-panel {
+    gap: 0.65rem;
+    width: 100%;
+  }
+
+  .file-input-label {
+    padding: 1.25rem;
+    min-height: 100px;
+    flex-shrink: 0;
+  }
+
+  .file-input-icon {
+    font-size: 2rem;
+  }
+
+  .file-input-text {
+    font-size: 0.9rem;
+    word-break: break-word;
+  }
+
+  .file-input-hint {
+    font-size: 0.8rem;
+  }
+
+  .upload-btn,
+  .record-btn {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.85rem;
+    min-width: auto;
+    width: 100%;
+  }
+
+  .btn-icon {
+    font-size: 1.1rem;
+  }
+
+  .btn-text {
+    font-size: 0.85rem;
+  }
+
+  .status-container {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .status-badge {
+    padding: 0.7rem 1.25rem;
+    font-size: 0.8rem;
+  }
+
+  .status-icon {
+    font-size: 1.2rem;
+  }
+
+  .progress-section {
+    gap: 0.65rem;
+  }
+
+  .progress-label {
+    font-size: 0.8rem;
+  }
+
+  .progress-value {
+    font-size: 1.15rem;
+  }
+
+  .progress-bar-container {
+    height: 11px;
+  }
+
+  .job-info {
+    padding: 0.9rem;
+    gap: 0.65rem;
+  }
+
+  .info-row {
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .info-label {
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  .info-value {
+    font-size: 0.82rem;
+    padding: 0.35rem 0.75rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .error-banner {
+    padding: 0.9rem;
+    gap: 0.65rem;
+  }
+
+  .error-icon {
+    font-size: 1.15rem;
+  }
+
+  .error-text {
+    font-size: 0.88rem;
+  }
+
+  .camera-modal {
+    padding: 0.75rem;
+  }
+
+  .camera-content {
+    max-width: 480px;
+    padding: 1rem;
+    gap: 0.85rem;
+  }
+
+  .camera-header {
+    padding-bottom: 0.75rem;
+  }
+
+  .camera-title {
+    font-size: 1.15rem;
+  }
+
+  .camera-close {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+
+  .camera-video {
+    height: 250px;
+  }
+
+  .countdown-display {
+    font-size: 60px;
+  }
+
+  .camera-controls {
+    gap: 0.65rem;
+  }
+
+  .camera-btn {
+    padding: 0.65rem 1rem;
+    font-size: 0.8rem;
+    min-width: 75px;
+  }
+
+  .camera-btn span {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .job-panel {
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .hidden-input {
+    display: none;
+  }
+
+  .file-input-label {
+    padding: 1rem;
+    min-height: 80px;
+    gap: 0.4rem;
+    border-radius: 8px;
+  }
+
+  .file-input-icon {
+    font-size: 1.5rem;
+  }
+
+  .file-input-text {
+    font-size: 0.85rem;
+    word-break: break-word;
+  }
+
+  .file-input-hint {
+    font-size: 0.7rem;
+  }
+
+  .upload-btn,
+  .record-btn {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.8rem;
+    gap: 0.5rem;
+    width: 100%;
+    min-width: auto;
+  }
+
+  .btn-icon {
+    font-size: 0.95rem;
+  }
+
+  .btn-text {
+    font-size: 0.8rem;
+  }
+
+  .status-badge-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .status-container {
+    padding: 0.75rem;
+    gap: 0.5rem;
+    border-radius: 8px;
+  }
+
+  .status-badge {
+    flex-direction: row;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .status-icon {
+    font-size: 1rem;
+  }
+
+  .status-text {
+    font-size: 0.75rem;
+  }
+
+  .progress-section {
+    gap: 0.5rem;
+  }
+
+  .progress-info {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .progress-label {
+    font-size: 0.72rem;
+    min-width: auto;
+  }
+
+  .progress-value {
+    font-size: 0.95rem;
+  }
+
+  .progress-bar-container {
+    height: 9px;
+  }
+
+  .progress-bar-text {
+    font-size: 0.6rem;
+  }
+
+  .job-info {
+    padding: 0.7rem;
+    gap: 0.5rem;
+    border-radius: 8px;
+  }
+
+  .info-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.4rem;
+  }
+
+  .info-label {
+    font-size: 0.7rem;
+    flex-shrink: 0;
+  }
+
+  .info-value {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    word-break: break-word;
+    overflow: hidden;
+  }
+
+  .error-banner {
+    padding: 0.75rem;
+    gap: 0.5rem;
+    border-radius: 8px;
+  }
+
+  .error-icon {
+    font-size: 1rem;
+  }
+
+  .error-text {
+    font-size: 0.8rem;
+  }
+
+  .camera-modal {
+    padding: 0.5rem;
+  }
+
+  .camera-content {
+    max-width: 95vw;
+    padding: 0.75rem;
+    gap: 0.65rem;
+    border-radius: 12px;
+  }
+
+  .camera-header {
+    padding-bottom: 0.6rem;
+    gap: 0.5rem;
+  }
+
+  .camera-title {
+    font-size: 1rem;
+  }
+
+  .camera-close {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .camera-video {
+    height: 200px;
+    border-radius: 8px;
+  }
+
+  .countdown-display {
+    font-size: 50px;
+  }
+
+  .camera-controls {
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .camera-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.72rem;
+    min-width: 65px;
+    flex: 1 1 calc(50% - 0.2rem);
+  }
+
+  .camera-btn span {
+    font-size: 0.85rem;
+  }
+}

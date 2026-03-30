@@ -1,0 +1,156 @@
+Here’s a clean list of ST-GCN-related parameters (and the few must-have supporting ones) that your backend should send to the LLM for best coaching.
+
+A) ST-GCN core (global + per-chunk)
+
+Send these for each 100-frame window (chunk):
+
+stgcn_sim_raw (0–1)
+Raw aggregated window similarity (before calibration).
+
+stgcn_sim_cal (0–1) ✅ (most important)
+Calibrated similarity (what you should show users).
+
+stgcn_sim_final (0–1)
+After motion penalty (what you actually fuse).
+
+stgcn_low_p (0–1)
+The “worst-part” percentile score (e.g., p20) used for strictness.
+
+stgcn_mean (0–1)
+Mean window similarity.
+
+stgcn_window_scores (list of 0–1) (optional if you already chunk)
+Similarity per ST-GCN window.
+
+stgcn_window_centers (list of frame indices or seconds)
+So the LLM can say when.
+
+B) ST-GCN reliability / quality (prevents bad advice)
+
+Per chunk:
+
+conf_thr (float)
+Confidence threshold used.
+
+valid_joint_ratio (0–1)
+Fraction of joints above threshold in that chunk.
+
+skipped_window (bool)
+If ST-GCN embedding was skipped (low confidence).
+
+num_valid_windows / num_total_windows
+Helps the LLM say “tracking quality is low”.
+
+C) Motion interpretation helpers (still ST-GCN-aligned)
+
+Per chunk:
+
+motion_mismatch (0–1) ✅
+Already in your pipeline; tells tempo/energy mismatch.
+
+energy_ref, energy_user, energy_ratio
+Lets LLM explain “you’re moving softer/harder”.
+
+speed_ref, speed_user (optional)
+Average joint speed in chunk.
+
+smoothness_ref, smoothness_user (optional)
+“jerkiness” / acceleration magnitude for flow feedback.
+
+D) Minimal “best set” (if you want to keep it small)
+
+If you want the smallest set that still gives excellent LLM feedback, send only:
+
+chunk_start_time, chunk_end_time
+
+stgcn_sim_cal
+
+stgcn_low_p
+
+motion_mismatch
+
+valid_joint_ratio + skipped_window
+
+That’s enough for:
+
+when it went wrong
+
+how severe
+
+whether it’s timing/energy vs technique
+
+whether the signal is trustworthy
+
+If you want, I can also give you a JSON schema for chunks[] and a short LLM prompt template that uses these fields to generate simple user-friendly feedback.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DTW_BETA = 0.025  # 0.02..0.035 (higher => stricter DTW score decay)
+
+# Final fusion weights
+DTW_W = 0.70
+STGCN_W = 0.30
+
+# ST-GCN strict aggregation: punish worst parts
+STGCN_LOW_P = 15       # percentile to use (10..30)
+STGCN_LOW_P_W = 0.70      # weight on percentile (punish bad parts)
+STGCN_MEAN_W = 0.30       # weight on mean
+
+# Motion mismatch penalty (speed/style mismatch)
+MOTION_W = 0.40          # 0..0.5 (higher => stricter)
+MOTION_EPS = 1e-6
+
+# Confidence gating for ST-GCN windows
+STGCN_CONF_THR = 0.20
+
+# alignment DTW downsample cap
+DTW_MAX_POINTS = 1200
+
+# =========================
+# ST-GCN CALIBRATION (IMPORTANT)
+# =========================
+# Your measured random-pair stats on embeddings:
+# p50  ~ 0.34083238
+# p99  ~ 0.90592414
+#
+# We map cosine -> calibrated [0..1] score so that:
+#   around random median => ~0
+#   around random p99    => ~1
+#
+# This prevents "different dances" from scoring ~0.95 just because your embedding space is naturally high-cosine.
+STGCN_CAL_P50 = 0.340832382440567
+STGCN_CAL_P99 = 0.9059241414070129
+STGCN_CAL_EPS = 1e-9
+
+
+a bit more strict

@@ -1,0 +1,47 @@
+# Django Core Dependencies
+Django==4.2.23
+djangorestframework==3.14.0
+djangorestframework-simplejwt==5.3.1
+
+# CORS Headers
+django-cors-headers==4.3.1
+
+# Google OAuth
+google-auth==2.27.0
+google-auth-oauthlib==1.2.0
+google-auth-httplib2==0.2.0
+
+# Database (PostgreSQL for production)
+psycopg2-binary==2.9.9
+
+# Environment Variables
+python-decouple==3.8
+python-dotenv==1.0.0
+
+# Password Validation
+argon2-cffi==23.1.0
+
+# API Documentation (optional but recommended)
+drf-yasg==1.21.7
+
+# Development Tools
+autopep8==2.0.4
+pylint==3.0.3
+pylint-django==2.5.5
+
+# Testing
+pytest==7.4.3
+pytest-django==4.7.0
+factory-boy==3.3.0
+
+# Code Quality
+black==23.12.1
+flake8==7.0.0
+isort==5.13.2
+
+# Security
+django-environ==0.11.2
+
+# Utilities
+python-dateutil==2.8.2
+pytz==2023.3

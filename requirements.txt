@@ -1,0 +1,68 @@
+# Consolidated dependencies for the full workspace
+# Source projects:
+# - app/Realtime_Dance_Guide/Backend (Django REST API)
+# - Learn mod/dance_eval_backend (Flask + CV/ML API)
+
+# -----------------------------
+# Core web frameworks
+# -----------------------------
+Django==4.2.23
+flask==3.0.3
+Flask-Cors==4.0.1
+
+# -----------------------------
+# Django ecosystem
+# -----------------------------
+djangorestframework==3.14.0
+djangorestframework-simplejwt==5.3.1
+django-cors-headers==4.3.1
+django-environ==0.11.2
+drf-yasg==1.21.7
+psycopg2-binary==2.9.9
+argon2-cffi==23.1.0
+
+# -----------------------------
+# Auth and OAuth
+# -----------------------------
+google-auth==2.27.0
+google-auth-oauthlib==1.2.0
+google-auth-httplib2==0.2.0
+
+# -----------------------------
+# Config and utility
+# -----------------------------
+python-dotenv==1.0.1
+python-decouple==3.8
+python-dateutil==2.9.0.post0
+pytz==2025.2
+requests==2.32.3
+
+# -----------------------------
+# Queue / worker
+# -----------------------------
+redis==5.0.8
+rq==1.16.2
+
+# -----------------------------
+# CV / ML stack
+# -----------------------------
+numpy==1.26.4
+opencv-python==4.10.0.84
+mediapipe==0.10.14
+ffmpeg-python==0.2.0
+pydantic==2.8.2
+psutil==6.0.0
+torch
+
+# -----------------------------
+# Development and testing tools
+# -----------------------------
+pytest==7.4.3
+pytest-django==4.7.0
+factory-boy==3.3.0
+black==23.12.1
+flake8==7.0.0
+isort==5.13.2
+autopep8==2.0.4
+pylint==3.0.3
+pylint-django==2.5.5

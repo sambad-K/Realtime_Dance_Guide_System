@@ -1,0 +1,205 @@
+/* /* ========================
+🔄 CSS Reset & Base Styling
+======================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  overflow-x: hidden;
+  max-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* ========================
+🌗 Theme Variables
+======================== */
+:root {
+  --bg: #000000;
+  --text: #FFFFFF;
+  --accent: #38B6A8;
+  --accent-hover: #2A9D8F;
+  --card: #111111;
+  --shadow: rgba(0, 0, 0, 0.6);
+  --sidebar-width: 220px; /* actual sidebar element width */
+  --sidebar-gap: 20px; /* extra gap so content doesn't touch sidebar */
+}
+
+/* light class available if theme toggle flips */
+.light {
+  --bg: #FBFBF8;
+  --text: #1F2933;
+  --accent: #2A9D8F;
+  --accent-hover: #1F8F7F;
+  --card: #FFFFFF;
+  --shadow: rgba(31, 41, 51, 0.06);
+}
+
+/* ========================
+📦 Containers & Layout
+======================== */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.main-content {
+  flex: 1;
+  margin-left: calc(var(--sidebar-width) + var(--sidebar-gap)); /* leave space for sidebar */
+  padding: 2rem;
+  transition: margin 0.3s ease, padding 0.3s ease;
+  background: var(--bg);
+  box-sizing: border-box;
+}
+
+/* Ensure the sidebar doesn't cover content for pages that don't use .main-content
+   Apply a default left padding on the body so all content shifts over when sidebar is visible */
+body {
+  padding-left: calc(var(--sidebar-width) + var(--sidebar-gap));
+  transition: padding-left 0.25s ease;
+}
+
+/* ========================
+🎨 Overlay for Modals
+======================== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ========================
+🧠 Utility Classes
+======================== */
+.text-center {
+  text-align: center;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px var(--shadow);
+  padding: 1rem;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
+.mb-1 {
+  margin-bottom: 1rem;
+}
+.mb-2 {
+  margin-bottom: 2rem;
+}
+.p-1 {
+  padding: 1rem;
+}
+.p-2 {
+  padding: 2rem;
+}
+
+.fade-enter {
+  opacity: 0;
+  transform: translateY(25px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+/* ========================
+📱 Responsive Helpers
+======================== */
+@media (max-width: 768px) {
+  main {
+    padding: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding-left: 0;
+  }
+}
+
+/* enforce dark card background/text for unspecified elements */
+body, .card, .modal, .loginContainer, .loginRight, .featureCard, .stats, .ctaButton, .dividerText, .errorAlert, .checkboxLabel, .securityNote, .loginLeft {
+  background: var(--card) !important;
+  color: var(--text) !important;
+}
+
+/* ensure inputs are dark */
+input, textarea, select {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border-color: var(--shadow) !important;
+}
+ */

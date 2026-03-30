@@ -1,0 +1,126 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 2.5vw, 1.5rem);
+  background-color: var(--card);
+  padding: clamp(1rem, 3vw, 2rem);
+  border-radius: clamp(8px, 2.5vw, 12px);
+  max-width: clamp(280px, 90vw, 900px);
+  margin: clamp(1rem, 3vw, 2rem) auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.heading {
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  font-weight: bold;
+  color: var(--text);
+  text-align: center;
+}
+
+/* Upload styling */
+.uploadLabel {
+  padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.75rem, 2.5vw, 1.5rem);
+  background: var(--accent);
+  color: white;
+  border-radius: clamp(8px, 2vw, 10px);
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.uploadLabel:hover {
+  background: var(--accent-hover);
+}
+
+.hiddenFileInput {
+  display: none;
+}
+
+/* Button styles */
+.button {
+  padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.75rem, 2.5vw, 1.5rem);
+  border-radius: clamp(8px, 2vw, 10px);
+  border: none;
+  font-weight: bold;
+  font-size: clamp(0.875rem, 1.8vw, 1rem);
+  transition: all 0.3s ease;
+}
+
+.inactive {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.active {
+  background-color: var(--accent);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.active:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Report Section */
+.reportCard {
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+  padding: clamp(0.75rem, 2.5vw, 1rem);
+  background: var(--card);
+  border-radius: clamp(8px, 2.5vw, 10px);
+}
+
+.table th,
+.table td {
+  padding: clamp(0.5rem, 1.5vw, 0.75rem);
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid var(--border);
+}
+.table th {
+  background: var(--accent-light);
+  color: var(--text);
+}
+  border: 1px solid #ccc;
+}
+
+.table th {
+  background: var(--accent);
+  color: white;
+}
+.uploadLabel:hover {
+  background: var(--accent-hover);
+}
+
+.active:hover {
+  background-color: var(--accent-hover);
+}
+.reportCard {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--card); /* use your dark-mode-safe background token */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  color: var(--text); /* ensures light text in dark mode */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  color: var(--text); /* keep table text visible */
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.table th {
+  background-color: var(--accent-light);
+  color: var(--text); /* or use a brighter value if needed */
+}

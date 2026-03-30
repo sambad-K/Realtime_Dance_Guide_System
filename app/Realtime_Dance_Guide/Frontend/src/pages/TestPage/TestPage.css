@@ -1,0 +1,66 @@
+:root{--tp-padding:24px}
+.testpage-wrapper{padding:var(--tp-padding);display:flex;flex-direction:column;gap:16px;min-height:100vh}
+
+/* Ensure Test component uses full width on small screens */
+.testpage-wrapper .app-container{padding:16px !important}
+
+/* Mobile-first adjustments */
+@media (max-width:900px){
+  .testpage-wrapper{padding:16px}
+  .app-main{padding:0}
+}
+
+@media (max-width:480px){
+  .testpage-wrapper{padding:12px}
+  .app-header h1{font-size:1.25rem}
+  .preview-section{padding:12px}
+}
+
+/* ============ PERFORMANCE / REDUCED VISUAL FIDELITY FOR TEST PAGE ============ */
+/* Disable heavy animated blobs, glows and drop shadows when on the test page */
+.testpage-wrapper .app-container::before,
+.testpage-wrapper .app-container::after {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+.testpage-wrapper .app-header,
+.testpage-wrapper .score-card,
+.testpage-wrapper .step-indicator,
+.testpage-wrapper .score-grid,
+.testpage-wrapper .verdict-card,
+.testpage-wrapper .cp-card {
+  animation: none !important;
+  transition: none !important;
+}
+
+.testpage-wrapper .app-header h1,
+.testpage-wrapper .verdict-summary,
+.testpage-wrapper .level-badge {
+  animation: none !important;
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+/* Reduce heavy shadows and gradients */
+.testpage-wrapper .cp-card,
+.testpage-wrapper .score-card,
+.testpage-wrapper .preview-section,
+.testpage-wrapper .upload-panel {
+  box-shadow: none !important;
+  background: rgba(10,12,16,0.6) !important;
+}
+
+/* Reduce motion globally inside test page */
+.testpage-wrapper * {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
+/* Keep layout intact but avoid visual churn */
+.testpage-wrapper .cp-bar-fill,
+.testpage-wrapper .cp-bar-track {
+  transition: width 300ms linear !important;
+}
+

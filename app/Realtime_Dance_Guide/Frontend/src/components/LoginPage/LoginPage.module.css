@@ -1,0 +1,564 @@
+/* ========================
+   Login Page Container
+======================== */
+.loginPage {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.loginContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1200px;
+  width: 100%;
+  background: var(--card);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.6s ease;
+}
+
+/* ========================
+   Left Side - Branding
+======================== */
+.loginLeft {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--text);
+  position: relative;
+  overflow: hidden;
+}
+
+.loginLeft::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+.brandSection {
+  position: relative;
+  z-index: 2;
+}
+
+.brandLogo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.logoIcon {
+  font-size: 3rem;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+}
+
+.logoText {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.brandTitle {
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.brandDescription {
+  font-size: 1.125rem;
+  opacity: 0.95;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.125rem;
+}
+
+.featureIcon {
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* ========================
+   Right Side - Form
+======================== */
+.loginRight {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--card);
+}
+
+.formContainer {
+  max-width: 450px;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0 12px 36px rgba(31, 41, 51, 0.08);
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.formTitle {
+  color: var(--accent);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.formSubtitle {
+  color: var(--text);
+  opacity: 0.8;
+  font-size: 1rem;
+}
+
+
+/* ========================
+   Error Alert
+======================== */
+.errorAlert {
+  background: var(--accent-hover);
+  border: 1px solid var(--accent);
+  color: var(--card);
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: shake 0.5s ease;
+}
+
+.errorIcon {
+  font-size: 1.25rem;
+}
+
+/* ========================
+   Form Styles
+======================== */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input {
+  padding: 0.875rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: var(--card);
+}
+
+.input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.input:disabled {
+  background: #f1f5f9;
+  cursor: not-allowed;
+}
+
+.passwordWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordWrapper .input {
+  flex: 1;
+  padding-right: 3rem;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  padding: 0.25rem;
+  transition: transform 0.2s ease;
+}
+
+.passwordToggle:hover {
+  transform: scale(1.1);
+}
+
+.passwordToggle:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ========================
+   Checkbox
+======================== */
+.checkboxGroup {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.checkbox {
+  margin-top: 0.25rem;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-size: 0.875rem;
+  color: var(--text);
+  opacity: 0.7;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+/* ========================
+   Submit Button
+======================== */
+.submitButton {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 1.125rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ========================
+   Divider
+======================== */
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 2rem 0 1.5rem;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--shadow);
+}
+
+.dividerText {
+  position: relative;
+  background: var(--card);
+  padding: 0 1rem;
+  color: var(--text);
+  opacity: 0.7;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* ========================
+   Google Button
+======================== */
+.googleButton {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Google One Tap custom positioning */
+:global(#credential_picker_container) {
+  z-index: 10001 !important;
+}
+
+.oneTapNotice {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #1e40af;
+}
+
+.oneTapNotice svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+/* ========================
+   Google Only Container
+======================== */
+.googleOnlyContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--text);
+  opacity: 0.7;
+  font-size: 0.875rem;
+  padding: 1rem;
+}
+
+.securityNote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--text);
+  opacity: 0.7;
+  font-size: 0.875rem;
+  padding: 1rem;
+  background: var(--card);
+  border-radius: 8px;
+  border: 1px solid var(--shadow);
+}
+
+.securityNote svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.setupInfo {
+  background: #fef3c7;
+  border: 2px solid #fbbf24;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.setupInfo h3 {
+  margin: 0 0 1rem 0;
+  color: #92400e;
+  font-size: 1.1rem;
+}
+
+.setupInfo p {
+  margin: 0 0 0.75rem 0;
+  color: #78350f;
+  font-weight: 500;
+}
+
+.setupInfo ol {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #78350f;
+}
+
+.setupInfo li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.setupInfo code {
+  background: #fde68a;
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  color: #92400e;
+}
+
+.setupInfo a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.setupInfo a:hover {
+  color: #1d4ed8;
+}
+
+/* ========================
+   Switch Mode
+======================== */
+.switchMode {
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+}
+
+.switchButton {
+  background: none;
+  border: none;
+  color: #6366f1;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.switchButton:hover:not(:disabled) {
+  color: #8b5cf6;
+  text-decoration: underline;
+}
+
+.switchButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ========================
+   Animations
+======================== */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+}
+
+/* ========================
+   Responsive Design
+======================== */
+@media (max-width: 968px) {
+  .loginContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .loginLeft {
+    display: none;
+  }
+
+  .loginRight {
+    padding: 3rem 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginPage {
+    padding: 1rem;
+  }
+
+  .loginRight {
+    padding: 2rem 1.5rem;
+  }
+
+  .formTitle {
+    font-size: 1.75rem;
+  }
+
+  .brandTitle {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,17 @@
+.authContainer {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg);
+  padding: 2rem;
+}
+
+.authContent {
+  width: 100%;
+  max-width: 450px;
+  background: var(--card);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px var(--shadow);
+}

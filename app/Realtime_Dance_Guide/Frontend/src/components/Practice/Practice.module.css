@@ -1,0 +1,587 @@
+:root {
+  --practice-ink: #e6edf8;
+  --practice-muted: #9fb0c7;
+  --practice-border: rgba(197, 215, 240, 0.2);
+  --practice-bg-1: #0c1425;
+  --practice-bg-2: #192844;
+  --practice-bg-3: #2e3f63;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.8rem, 1vw + 0.6rem, 1.3rem);
+  background: radial-gradient(circle at 88% -8%, rgba(77, 255, 215, 0.26), transparent 40%),
+    radial-gradient(circle at -8% 112%, rgba(255, 122, 89, 0.28), transparent 44%),
+    linear-gradient(145deg, var(--practice-bg-1) 0%, var(--practice-bg-2) 56%, var(--practice-bg-3) 100%);
+  padding: clamp(1rem, 1vw + 0.9rem, 1.5rem);
+  border-radius: 22px;
+  max-width: 1160px;
+  margin: clamp(0.9rem, 1vw + 0.6rem, 1.5rem) auto;
+  box-shadow: 0 22px 58px rgba(1, 7, 22, 0.5);
+  border: 1px solid rgba(225, 236, 255, 0.1);
+  overflow: hidden;
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+.heading {
+  font-size: clamp(1.35rem, 1.4vw + 1rem, 2.05rem);
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: var(--practice-ink);
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.subheading {
+  margin: -0.2rem 0 0;
+  text-align: center;
+  color: var(--practice-muted);
+  font-size: 0.92rem;
+  letter-spacing: 0.01em;
+}
+
+.statusRow {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.statusPill {
+  background: rgba(10, 22, 42, 0.72);
+  color: #cfe0fb;
+  border: 1px solid rgba(173, 194, 226, 0.25);
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 0.34rem 0.62rem;
+}
+
+.uploadLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.48rem;
+  align-self: center;
+  width: min(520px, 100%);
+  min-height: 118px;
+  padding: 1rem 1.1rem;
+  border: 2px dashed rgba(88, 204, 184, 0.7);
+  background: linear-gradient(135deg, rgba(34, 197, 161, 0.09) 0%, rgba(34, 197, 161, 0.03) 100%);
+  color: #eaf4ff;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  box-shadow: 0 0 0 1px rgba(34, 197, 161, 0.24) inset;
+  z-index: 1;
+}
+
+.uploadLabel:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+  border-color: rgba(88, 204, 184, 0.95);
+  background: linear-gradient(135deg, rgba(34, 197, 161, 0.14) 0%, rgba(34, 197, 161, 0.05) 100%);
+  box-shadow: 0 0 22px rgba(34, 197, 161, 0.2);
+}
+
+.uploadIcon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.uploadText {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.uploadHint {
+  font-size: 0.8rem;
+  color: #9fc0d9;
+  font-weight: 600;
+}
+
+.hiddenFileInput {
+  display: none;
+}
+
+.filenameText {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 550;
+  color: var(--practice-muted);
+  text-align: center;
+  z-index: 1;
+}
+
+.errorText {
+  margin: 0;
+  color: #ffd0d4;
+  text-align: center;
+  font-size: 0.9rem;
+  z-index: 1;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: radial-gradient(circle at 30% 15%, rgba(79, 201, 255, 0.12), transparent 40%),
+    rgba(3, 8, 20, 0.78);
+  backdrop-filter: blur(4px);
+  animation: fadeInModal 0.25s ease-out;
+}
+
+.modalCard {
+  width: min(1120px, 100%);
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  border-radius: 20px;
+  padding: 1rem;
+  border: 1px solid rgba(205, 222, 247, 0.22);
+  background: linear-gradient(160deg, rgba(11, 21, 41, 0.95), rgba(20, 34, 62, 0.94));
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.5);
+  animation: slideUpModal 0.28s ease-out;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
+.modalTitle {
+  margin: 0;
+  color: var(--practice-ink);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.modalCloseButton {
+  border: 1px solid rgba(173, 194, 226, 0.5);
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  background: rgba(10, 21, 42, 0.85);
+  color: #e8f1fd;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.stageBox {
+  border: 1px solid rgba(173, 194, 226, 0.2);
+  border-radius: 16px;
+  padding: 0.8rem;
+  background: linear-gradient(145deg, rgba(8, 16, 32, 0.85), rgba(17, 30, 55, 0.8));
+}
+
+.practiceStage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(0.8rem, 1vw + 0.5rem, 1.2rem);
+  z-index: 1;
+}
+
+.referenceShell,
+.cameraShell {
+  position: relative;
+  border-radius: 16px;
+  border: 1px solid var(--practice-border);
+  background: linear-gradient(155deg, rgba(8, 14, 29, 0.95), rgba(15, 26, 49, 0.92));
+  backdrop-filter: blur(4px);
+  padding: 0.78rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.66rem;
+  min-width: 0;
+  min-height: 0;
+}
+
+.panelTitle {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--practice-muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.referenceVideo,
+.cameraVideo {
+  width: 100%;
+  height: auto;
+  min-height: 180px;
+  max-height: min(42vh, 360px);
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid rgba(205, 222, 247, 0.15);
+  background: #03080f;
+}
+
+.cameraVideo {
+  transform: scaleX(-1);
+}
+
+.cameraControls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.25rem 0;
+  position: static;
+}
+
+.advancedControls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.startButton,
+.doneButton,
+.audioButton,
+.moreToggleButton,
+.closeButton,
+.letsCheckButton {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #f7fbff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.startButton,
+.doneButton,
+.moreToggleButton,
+.audioButton {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 40px;
+  padding: 0.58rem 0.95rem;
+  font-size: 0.86rem;
+}
+
+.startButton {
+  background: linear-gradient(135deg, #03b9df 0%, #4068ff 100%);
+  box-shadow: 0 10px 22px rgba(64, 104, 255, 0.34);
+}
+
+.doneButton {
+  background: linear-gradient(135deg, #ff5d45 0%, #ff8b3d 100%);
+  box-shadow: 0 10px 22px rgba(255, 128, 62, 0.3);
+}
+
+.audioButton {
+  background: rgba(13, 24, 47, 0.9);
+}
+
+.moreToggleButton {
+  background: rgba(22, 36, 64, 0.95);
+}
+
+.startButton:hover,
+.doneButton:hover,
+.audioButton:hover,
+.moreToggleButton:hover,
+.closeButton:hover,
+.letsCheckButton:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+}
+
+.speedControl {
+  font-size: 0.82rem;
+  color: var(--practice-muted);
+  font-weight: 700;
+}
+
+.speedGroup {
+  box-sizing: border-box;
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.45rem;
+  border-radius: 999px;
+  border: 1px solid rgba(152, 172, 202, 0.6);
+  background: rgba(10, 21, 42, 0.9);
+  padding: 0.34rem 0.45rem 0.34rem 0.65rem;
+}
+
+.speedSelect {
+  border-radius: 10px;
+  border: 1px solid rgba(152, 172, 202, 0.6);
+  background: rgba(10, 21, 42, 0.9);
+  color: #edf4ff;
+  padding: 0.52rem 0.7rem;
+  font-size: 0.88rem;
+}
+
+.countdownBadge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.26), rgba(17, 21, 33, 0.92));
+  border: 2px solid rgba(248, 250, 252, 0.85);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  font-weight: 800;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.48);
+  animation: pulseCountdown 1s ease-in-out infinite;
+}
+
+.closeButton {
+  align-self: stretch;
+  width: 100%;
+  padding: 0.48rem 0.9rem;
+  background: rgba(12, 20, 36, 0.7);
+  font-size: 0.84rem;
+}
+
+.letsCheckButton {
+  align-self: center;
+  margin-top: 0.2rem;
+  min-width: 210px;
+  padding: 0.75rem 1.2rem;
+  font-size: 0.98rem;
+  text-transform: lowercase;
+  background: linear-gradient(135deg, #18cf7a 0%, #1fa2d6 100%);
+  box-shadow: 0 14px 28px rgba(31, 162, 214, 0.35);
+  z-index: 1;
+}
+
+@keyframes pulseCountdown {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpModal {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.videoPlayer {
+  margin-top: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.video {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 12px;
+}
+
+.timestamp {
+  background: rgba(8, 16, 30, 0.75);
+  color: #f8fafc;
+  padding: 0.42rem 1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 920px) {
+  .modalCard {
+    padding: 0.8rem;
+  }
+
+  .stageBox {
+    padding: 0.65rem;
+  }
+
+  .referenceVideo,
+  .cameraVideo {
+    height: min(40vh, 300px);
+  }
+
+  .cameraControls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .advancedControls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .modalOverlay {
+    padding: 0.55rem;
+  }
+
+  .modalCard {
+    max-height: calc(100vh - 1rem);
+    padding: 0.65rem;
+    border-radius: 16px;
+  }
+
+  .modalHeader {
+    margin-bottom: 0.55rem;
+  }
+
+  .modalTitle {
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+  }
+
+  .modalCloseButton {
+    font-size: 0.76rem;
+    padding: 0.4rem 0.72rem;
+  }
+
+  .stageBox {
+    padding: 0.5rem;
+  }
+
+  .container {
+    margin: 0.8rem;
+    border-radius: 16px;
+  }
+
+  .uploadLabel {
+    width: 100%;
+    min-height: 102px;
+    padding: 0.85rem 0.9rem;
+  }
+
+  .uploadIcon {
+    font-size: 1.65rem;
+  }
+
+  .uploadText {
+    font-size: 0.9rem;
+  }
+
+  .uploadHint {
+    font-size: 0.74rem;
+  }
+
+  .cameraControls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+
+  .advancedControls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+
+  .practiceStage {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  .referenceShell,
+  .cameraShell {
+    padding: 0.55rem;
+    min-height: 210px;
+  }
+
+  .referenceVideo,
+  .cameraVideo {
+    min-height: 128px;
+    max-height: min(28vh, 190px);
+  }
+
+  .startButton,
+  .doneButton,
+  .moreToggleButton,
+  .audioButton {
+    width: 100%;
+    min-height: 36px;
+    padding: 0.48rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .speedGroup {
+    grid-column: 1 / -1;
+    min-height: 36px;
+    padding: 0.26rem 0.4rem 0.26rem 0.52rem;
+  }
+
+  .speedControl {
+    font-size: 0.76rem;
+  }
+
+  .speedSelect {
+    font-size: 0.76rem;
+    padding: 0.25rem 0.38rem;
+  }
+
+  .closeButton {
+    width: 100%;
+    text-align: center;
+  }
+
+  .statusPill {
+    font-size: 0.7rem;
+  }
+
+  .letsCheckButton {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .countdownBadge {
+    width: 86px;
+    height: 86px;
+    font-size: 1.65rem;
+  }
+}

@@ -1,0 +1,104 @@
+:root {
+  /* high‑contrast black theme */
+  --bg: #000000;              /* true black background */
+  --text: #FFFFFF;            /* pure white text for max contrast */
+  --accent: #38B6A8;          /* keep teal accent, still visible on black */
+  --accent-hover: #2A9D8F;    /* slightly darker teal for hover */
+  --card: #111111;            /* very dark cards to separate from bg */
+  --shadow: rgba(0, 0, 0, 0.6); /* stronger shadow on black */
+}
+
+.light {
+  /* optional light variant if toggle used */
+  --bg: #FBFBF8;
+  --text: #1F2933;
+  --accent: #2A9D8F;
+  --accent-hover: #1F8F7F;
+  --card: #FFFFFF;
+  --shadow: rgba(31, 41, 51, 0.06);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* High-contrast global overrides to ensure all pages/components adopt the black theme */
+:root {
+  /* additional accessibility-safe contrast tokens */
+  --muted: #cfcfcf;
+  --border: rgba(255,255,255,0.06);
+}
+
+html, body, #root, .app-container, .main-content, main, .page, section, header, nav, footer {
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+/* Ensure the browser/document scrollbar remains visible */
+html, body, #root {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: auto !important;
+  scrollbar-width: auto !important; /* Firefox */
+  -ms-overflow-style: auto !important; /* IE/Edge */
+}
+
+/* Restore a visible scrollbar for the document root on WebKit browsers */
+html::-webkit-scrollbar, body::-webkit-scrollbar, #root::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+}
+html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb, #root::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary-light, var(--accent)), var(--primary-dark, var(--accent-hover))) !important;
+  border-radius: 8px !important;
+}
+
+/* Ensure cards, modals, overlays and common UI surfaces are visible on black */
+.card, .modal, .overlay, .loginContainer, .loginLeft, .loginRight, .featureCard, .stats, .ctaButton, .dividerText {
+  background-color: var(--card) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+/* Links and accents */
+a, a:visited {
+  color: var(--accent) !important;
+}
+a:hover {
+  color: var(--accent-hover) !important;
+}
+
+/* Buttons and form controls */
+button, .btn {
+  background-color: var(--card) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+}
+
+input, textarea, select {
+  background-color: var(--card) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* Improve focus visibility for keyboard users */
+* :focus {
+  outline: 3px solid rgba(255,255,255,0.12) !important;
+  outline-offset: 2px;
+}
+
+/* Ensure code blocks, preformatted text are readable */
+pre, code, kbd, samp {
+  background: #0b0b0b !important;
+  color: var(--text) !important;
+}
+
+/* Reduce accidental light backgrounds from third-party CSS */
+[class*="bg-"], [class*="background"], [style*="background-color"] {
+  background-color: transparent !important;
+}
+
+/* Provide a fallback for images with transparent backgrounds so they remain visible */
+img[alt], svg {
+  filter: none;
+}
