@@ -218,10 +218,10 @@ npm run dev
 ---
 
 ---
-##Contact
-Email: sambadkhatiwada939@gmail.com
-Linkedin:https://www.linkedin.com/in/sambad-khatiwada/
-Github: https://github.com/sambad-K/
+## Contact
+- Email: sambadkhatiwada939@gmail.com
+- Linkedin:https://www.linkedin.com/in/sambad-khatiwada/
+- Github: https://github.com/sambad-K/
 ---
 ## License
 
