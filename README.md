@@ -6,130 +6,179 @@ An AI-powered web application that enables users to learn, practice, and evaluat
 
 ## Introduction
 
-The Real-Time Dance Guide System is designed to make dance learning accessible, structured, and interactive. Traditional dance training often requires physical instructors and is not accessible to everyone. Existing online resources provide video content but lack personalized feedback and structured guidance.
+The Real-Time Dance Guide System is designed to make dance learning accessible, structured, and interactive. Traditional dance training often requires physical instructors and is not accessible to everyone. Existing online resources provide video content but lack personalized feedback.
 
-This system addresses that gap by combining computer vision, deep learning, and Large Language Models (LLMs) to deliver real-time guidance and intelligent performance evaluation.
-
----
-
-## What the System Does
-
-The application allows users to:
-
-- Learn dance steps through guided tutorials  
-- Practice movements with real-time feedback  
-- Compare performance with reference choreography  
-- Receive AI-generated evaluation and improvement suggestions  
-
----
-
-## Core Features
-
-### Practice Mode
-- Step-by-step guided learning  
-- Side-by-side reference comparison  
-- Slow-motion playback  
-- Real-time pose tracking using webcam  
-
-### Test Mode
-- Upload or record full dance performance  
-- Automated scoring system  
-- Motion accuracy analysis  
-- Detailed feedback report  
-
-### AI Capabilities
-- Real-time pose estimation  
-- Motion alignment and comparison  
-- Deep motion analysis using ST-GCN  
-- LLM-based feedback generation  
-
----
-
-## How It Works
-
-1. User provides input via webcam or uploaded video  
-2. Video frames are extracted and processed  
-3. Pose keypoints are detected using MediaPipe  
-4. Keypoints are normalized for consistency  
-5. Motion comparison is performed using:
-   - Dynamic Time Warping (DTW) for temporal alignment  
-   - ST-GCN for spatio-temporal motion analysis  
-6. Quantitative metrics are generated  
-7. LLM interprets these metrics into human-readable feedback  
-8. Results are displayed with overlays and structured reports  
-
----
-
-## LLM Integration
-
-The system integrates a Large Language Model to convert raw motion evaluation metrics into meaningful, user-friendly feedback.
-
-### Role of LLM
-- Translates numerical scores into natural language explanations  
-- Identifies incorrect body movements (arms, legs, posture, timing)  
-- Provides actionable improvement suggestions  
-- Generates overall performance verdict  
-
-### Implementation
-- Input: Metrics from DTW and ST-GCN  
-- Processing: Prompt-based interpretation  
-- Output: Structured feedback and evaluation summary  
-
----
-
-## Tech Stack
-
-### Frontend
-- React.js  
-- HTML, CSS,React
-
-### Backend
-- Django  
-- Django REST Framework  
-
-### Machine Learning
-- MediaPipe (Pose Estimation)  
-- ST-GCN (Spatio-Temporal Graph Convolutional Network)  
-- Dynamic Time Warping (DTW)  
-- Cosine Similarity  
-- Euclidean Distance  
-
-### LLM Integration
-- Gemma 3:1B (via Ollama)  
-- Used for feedback interpretation  
-
-### Tools and Services
-- OpenCV  
-- SQLite  
-- Python  
-
----
-
-## Machine Learning Overview
-
-The system uses pose-based motion analysis trained on the AIST Dance Dataset (~5000 videos). Human movements are represented using COCO-17 keypoints.
-
-A self-supervised ST-GCN autoencoder is trained using:
-
-- Reconstruction loss  
-- Velocity consistency loss  
-- Acceleration loss  
-- VICReg regularization  
-
-### Performance
-- Validation Loss: 0.4319  
-- Training Loss: 0.5358  
-- Approx. 5% performance drop with increased camera distance  
+This system bridges that gap using computer vision, deep learning, and Large Language Models (LLMs).
 
 ---
 
 ## System Architecture
 
-- Input: Video (live or uploaded)  
-- Processing: Pose extraction and normalization  
-- Analysis: DTW + ST-GCN  
-- Interpretation: LLM-based feedback  
-- Output: Score, explanation, and visual overlays  
+<p align="center">
+  <img src="assets/System_Architecture.png" width="600"/>
+</p>
+
+The system processes video input, extracts pose keypoints, analyzes motion using DTW and ST-GCN, and generates feedback using an LLM layer.
+
+---
+
+## Application Interface
+
+### Practice Mode
+
+<p align="center">
+  <img src="assets/Practice_Mode.png" width="500"/>
+</p>
+
+- Guided step-by-step dance learning  
+- Side-by-side comparison  
+- Slow motion support  
+- Real-time pose tracking  
+
+---
+
+### Test Mode
+
+<p align="center">
+  <img src="assets/Test_Mode.png" width="500"/>
+</p>
+
+- Full performance recording or upload  
+- Automated scoring  
+- Detailed feedback generation  
+
+---
+
+### Live Pose Overlay
+
+<p align="center">
+  <img src="assets/Live_Overlay.png" width="500"/>
+</p>
+
+- Real-time skeleton tracking  
+- Visual correction guidance  
+
+---
+
+### Skeleton Representation
+
+<p align="center">
+  <img src="assets/Skeleton_View.png" width="400"/>
+</p>
+
+Based on COCO-17 keypoint structure:
+
+<p align="center">
+  <img src="assets/COCO-17_Mapping.png" width="400"/>
+</p>
+
+---
+
+## AI and Model Performance
+
+### Training and Validation Loss
+
+<p align="center">
+  <img src="assets/TrainingAndValidationLoss_VS_Epoch.png" width="500"/>
+</p>
+
+### Learning Rate Schedule
+
+<p align="center">
+  <img src="assets/Learning_Rate_Vs_Epoch.png" width="500"/>
+</p>
+
+### Generalization Gap
+
+<p align="center">
+  <img src="assets/GeneralizationGap_Vs_Epoch.png" width="500"/>
+</p>
+
+---
+
+## Performance Analysis
+
+### Model Score Output
+
+<p align="center">
+  <img src="assets/Model_Performance_Score.png" width="450"/>
+</p>
+
+### Final Scores Visualization
+
+<p align="center">
+  <img src="assets/Scores.png" width="450"/>
+</p>
+
+### Score Behavior with Distance
+
+<p align="center">
+  <img src="assets/Score_Dropping_On_Increasing_Distance.png" width="500"/>
+</p>
+
+---
+
+## LLM-Based Feedback
+
+<p align="center">
+  <img src="assets/LLM_Recommendation.png" width="500"/>
+</p>
+
+The system uses a Large Language Model to convert numerical evaluation metrics into human-readable feedback.
+
+- Explains mistakes clearly  
+- Suggests improvements  
+- Provides overall performance summary  
+
+---
+
+## User Profile
+
+<p align="center">
+  <img src="assets/Profile.png" width="400"/>
+</p>
+
+---
+
+## How It Works
+
+1. User inputs video via webcam or upload  
+2. Frames are extracted and processed  
+3. Pose keypoints are detected using MediaPipe  
+4. Keypoints are normalized  
+5. Motion comparison is performed using:
+   - Dynamic Time Warping (DTW)  
+   - ST-GCN  
+6. Metrics are generated  
+7. LLM interprets results  
+8. Feedback and scores are displayed  
+
+---
+
+## Tech Stack
+
+**Frontend**
+- React.js  
+- HTML, CSS, JavaScript  
+
+**Backend**
+- Django  
+- Django REST Framework  
+
+**Machine Learning**
+- MediaPipe  
+- ST-GCN  
+- Dynamic Time Warping  
+- Cosine Similarity  
+- Euclidean Distance  
+
+**LLM**
+- Gemma (via Ollama)  
+
+**Tools**
+- OpenCV  
+- Firebase  
+- Python  
 
 ---
 
@@ -137,40 +186,39 @@ A self-supervised ST-GCN autoencoder is trained using:
 
 ### Clone Repository
 git clone https://github.com/your-username/dance-guide-system.git  
-cd Realtime_Dance_Guide_System
+cd dance-guide-system  
 
-### Backend Setup
-cd Model_Backend  
+### Backend
+cd backend  
 python -m venv venv  
-Windows: venv\Scripts\activate  
+source venv/bin/activate  
 pip install -r requirements.txt  
 python manage.py migrate  
 python manage.py runserver  
 
-### Frontend Setup
-cd UI_Auth_Routing
+### Frontend
+cd frontend  
 npm install  
-npm run dev
+npm start  
 
 ---
 
 ## Applications
 
 - Dance learning platforms  
-- Short-form content creators  
-- Fitness and motion training  
-- Educational tools  
-- AI-based interactive learning systems  
+- Fitness training systems  
+- Content creation tools  
+- Educational AI systems  
 
 ---
 
 ## Future Improvements
 
-- Multi-person dance evaluation  
-- Mobile application support  
-- Faster real-time processing  
-- Transformer-based pose models  
-- Enhanced LLM reasoning and personalization  
+- Multi-person tracking  
+- Mobile app support  
+- Faster real-time inference  
+- Advanced pose models  
+- Improved LLM personalization  
 
 ---
 
@@ -183,15 +231,6 @@ npm run dev
 
 ---
 
-## Contact
-
-Email:sambadkhatiwada939@gmail.com
-Github: https://github.com/sambad-K
-Linkedin: https://github.com/sambad-K
-
-
----
-
 ## License
 
-This project is developed for academic purposes and can be extended for production use.
+Academic project, can be extended for production use.
