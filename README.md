@@ -81,7 +81,7 @@ The system integrates a Large Language Model to convert raw motion evaluation me
 
 ### Frontend
 - React.js  
-- HTML, CSS, JavaScript  
+- HTML, CSS,React
 
 ### Backend
 - Django  
@@ -100,7 +100,7 @@ The system integrates a Large Language Model to convert raw motion evaluation me
 
 ### Tools and Services
 - OpenCV  
-- Firebase  
+- SQLite  
 - Python  
 
 ---
@@ -137,20 +137,20 @@ A self-supervised ST-GCN autoencoder is trained using:
 
 ### Clone Repository
 git clone https://github.com/your-username/dance-guide-system.git  
-cd dance-guide-system  
+cd Realtime_Dance_Guide_System
 
 ### Backend Setup
-cd backend  
+cd Model_Backend  
 python -m venv venv  
-source venv/bin/activate   # Windows: venv\Scripts\activate  
+Windows: venv\Scripts\activate  
 pip install -r requirements.txt  
 python manage.py migrate  
 python manage.py runserver  
 
 ### Frontend Setup
-cd frontend  
+cd UI_Auth_Routing
 npm install  
-npm start  
+npm run dev
 
 ---
 
