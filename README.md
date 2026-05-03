@@ -185,7 +185,10 @@ npm run dev
 
 ## Contact
 
-For collaboration or inquiries, connect via GitHub or professional platforms.
+Email:sambadkhatiwada939@gmail.com
+Github: https://github.com/sambad-K
+Linkedin: https://github.com/sambad-K
+
 
 ---
 
