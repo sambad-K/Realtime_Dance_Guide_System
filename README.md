@@ -183,23 +183,18 @@ The system uses a Large Language Model to convert numerical evaluation metrics i
 ---
 
 ## Setup Instructions
-
-### Clone Repository
-git clone https://github.com/your-username/dance-guide-system.git  
-cd dance-guide-system  
-
-### Backend
-cd backend  
+git clone https://github.com/sambad-K/Realtime_Dance_Guide_System 
+cd Model_Backend  
 python -m venv venv  
-source venv/bin/activate  
+Windows: venv\Scripts\activate  
 pip install -r requirements.txt  
 python manage.py migrate  
 python manage.py runserver  
 
-### Frontend
-cd frontend  
+### Frontend Setup
+cd UI_Auth_Routing
 npm install  
-npm start  
+npm run dev 
 
 ---
 
@@ -221,13 +216,6 @@ npm start
 - Improved LLM personalization  
 
 ---
-
-## Contributors
-
-- Sambad Khatiwada  
-- Lokendra Joshi  
-- Raghabendra Chaudhary  
-- Santu Jhankri Magar  
 
 ---
 
